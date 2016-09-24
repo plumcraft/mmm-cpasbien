@@ -4,14 +4,18 @@ Module.register("mmm-cpasbien",{
         dimmed: true,
         loadingText: 'Loading...',
         topMax: 10,
-        replace: ["DVDRIP","2016","FRENCH","DVDSCR"]
+        replace: ["DVDRIP","2016","FRENCH","DVDSCR","720p"],
 
     },
 
     start: function() {
         Log.info("Starting module: " + this.name);
         this.torrents = [];
-        this.sendSocketNotification('GET_IP', {});
+        this.sendSocketNotification('GET_TORRENT_LIST', {});
+        var self = this;
+        setInterval(function() {
+            self.sendSocketNotification('GET_TORRENT_LIST', {});
+        }, this.getRandomInt(50000,100000));
     },
 
     getDom: function() {
@@ -38,6 +42,12 @@ Module.register("mmm-cpasbien",{
             wrapper.appendChild(table);
         }
         return wrapper;
+    },
+
+    getStyles: function() {
+        return [
+            'script.css'
+        ]
     },
 
     createLabelRow: function () {
@@ -76,8 +86,12 @@ Module.register("mmm-cpasbien",{
         return data;
     },
 
+    getRandomInt: function(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    },
+
     socketNotificationReceived: function(notification, payload) {
-        if (notification === "IP"){
+        if (notification === "TORRENT_LIST"){
             this.torrents = payload;
             this.updateDom();
         }

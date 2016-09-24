@@ -5,8 +5,8 @@ const base_url = 'http://www.cpasbien.cm'
 
 module.exports = NodeHelper.create({
     socketNotificationReceived: function(notification, payload) {
-
-        if (notification === 'GET_IP') {
+        if (notification === 'GET_TORRENT_LIST') {
+            console.log("GET_TORRENT_LIST");
             this.search();
         }
     },
@@ -29,10 +29,9 @@ module.exports = NodeHelper.create({
             torrent.title = $(element).children('a').text();
             torrent.seeds = $(element).find('.seed_ok').text();
             torrent.down = $(element).find('.down').text();
-
             torrents.push(torrent);
           });
-         self.sendSocketNotification('IP', torrents);
+         self.sendSocketNotification('TORRENT_LIST', torrents);
         }
       });
     }
