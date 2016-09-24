@@ -3,7 +3,8 @@ Module.register("mmm-cpasbien",{
         fontSize: 9,
         dimmed: true,
         loadingText: 'Loading...',
-        top: 10
+        topMax: 10,
+        replace: ["DVDRIP","2016","FRENCH","DVDSCR"]
 
     },
 
@@ -16,19 +17,18 @@ Module.register("mmm-cpasbien",{
     getDom: function() {
         var wrapper = document.createElement("div");
         var header = document.createElement("header"); //support for config.changeColor
-        header.innerHTML =  "Top " + this.config.top + " torrents"
+        header.innerHTML =  "Top " + this.config.topMax + " torrents"
         wrapper.appendChild(header);
 
-	    //console.log("LENGTH" + this.torrents.length);
         if (!this.torrents || this.torrents.length === 0) {
             var text = document.createElement("div");
-            text.innerHTML = this.translate("LOADING...");
+            text.innerHTML = this.translate(this.config.loadingText);
             text.classList.add("dimmed", "light");
             wrapper.appendChild(text);
         } else if(null != this.torrents) {
             var table = document.createElement("table");
             table.classList.add("small","table");
-            var max = this.torrents.length < 10 ? this.torrents.length : 10;
+            var max = this.torrents.length < this.config.topMax ? this.torrents.length : this.config.topMax;
             table.appendChild(this.createLabelRow());
             for(var i = 0; i < max; i++) {
                if(this.torrents[i] != "undefined") {
@@ -63,15 +63,17 @@ Module.register("mmm-cpasbien",{
 
         for (var p in data) {
             var name = document.createElement("td");
-            name.innerHTML = 
-            data[p].replace("DVDRIP","")
-                   .replace("2016", "")
-                   .replace("FRENCH", "")
-                   .replace("720p","")
-		   .replace("DVDSCR","");
+            name.innerHTML = this.removeString(data[p]);
             row.appendChild(name);
         }
         return row;
+    },
+
+    removeString: function (data) {
+        for (var i = 0; i < this.config.replace.length; i++) {
+            var data = data.replace(this.config.replace[i],"");
+        }
+        return data;
     },
 
     socketNotificationReceived: function(notification, payload) {
