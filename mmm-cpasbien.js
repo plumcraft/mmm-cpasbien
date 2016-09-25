@@ -21,7 +21,7 @@ Module.register("mmm-cpasbien",{
     getDom: function() {
         var wrapper = document.createElement("div");
         var header = document.createElement("header"); //support for config.changeColor
-        header.innerHTML =  "Top " + this.config.topMax + " torrents"
+        header.innerHTML =  "Top " + this.config.topMax + " torrents";
         wrapper.appendChild(header);
 
         if (!this.torrents || this.torrents.length === 0) {
@@ -29,7 +29,7 @@ Module.register("mmm-cpasbien",{
             text.innerHTML = this.translate(this.config.loadingText);
             text.classList.add("dimmed", "light");
             wrapper.appendChild(text);
-        } else if(null != this.torrents) {
+        } else if(null !== this.torrents) {
             var table = document.createElement("table");
             table.classList.add("small","table");
             var max = this.torrents.length < this.config.topMax ? this.torrents.length : this.config.topMax;
@@ -37,7 +37,7 @@ Module.register("mmm-cpasbien",{
             for(var i = 0; i < max; i++) {
                if(this.torrents[i] != "undefined") {
                	  table.appendChild(this.createDataRow(this.torrents[i]));
-               }    
+               }
             }
             wrapper.appendChild(table);
         }
@@ -47,7 +47,7 @@ Module.register("mmm-cpasbien",{
     getStyles: function() {
         return [
             'script.css'
-        ]
+        ];
     },
 
     createLabelRow: function () {
@@ -81,7 +81,7 @@ Module.register("mmm-cpasbien",{
 
     removeString: function (data) {
         for (var i = 0; i < this.config.replace.length; i++) {
-            var data = data.replace(this.config.replace[i],"");
+            data = data.replace(this.config.replace[i],"");
         }
         return data;
     },
