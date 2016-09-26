@@ -26,6 +26,7 @@ Module.register("mmm-cpasbien",{
 
         if (!this.torrents || this.torrents.length === 0) {
             var text = document.createElement("div");
+            text.classList.add('loading');
             text.innerHTML = this.translate(this.config.loadingText);
             text.classList.add("dimmed", "light");
             wrapper.appendChild(text);
@@ -45,24 +46,28 @@ Module.register("mmm-cpasbien",{
     },
 
     getStyles: function() {
-        return [
-            'script.css'
-        ];
+        return ["font-awesome.css", "mmm-cpasbien.css"];
     },
 
     createLabelRow: function () {
         var labelRow = document.createElement("tr");
 
         var nameLabel = document.createElement("th");
-        nameLabel.innerHTML = "name";
+        nameLabel.innerHTML = "Name";
         labelRow.appendChild(nameLabel);
 
         var seedsLabel = document.createElement("th");
-        seedsLabel.innerHTML = "seeds";
+        seedsLabel.classList.add('centered');
+        var seeds = document.createElement('i');
+        seeds.classList.add('fa', 'fa-upload');
+        seedsLabel.appendChild(seeds);
         labelRow.appendChild(seedsLabel);
 
         var downLabel = document.createElement("th");
-        downLabel.innerHTML = "down";
+        downLabel.classList.add('centered');
+        var down = document.createElement('i');
+        down.classList.add('fa','fa-download');
+        downLabel.appendChild(down);
         labelRow.appendChild(downLabel);
 
         return labelRow;
@@ -74,6 +79,7 @@ Module.register("mmm-cpasbien",{
         for (var p in data) {
             var name = document.createElement("td");
             name.innerHTML = this.removeString(data[p]);
+            // row.style.opacity = 0,4;
             row.appendChild(name);
         }
         return row;
