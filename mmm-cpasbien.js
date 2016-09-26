@@ -75,8 +75,7 @@ Module.register("mmm-cpasbien",{
 
     createDataRow: function (data,i) {
         var row = document.createElement("tr");
-        console.log("i " + i);
-
+        
         for (var p in data) {
           var name = document.createElement("td");
           name.innerHTML = this.removeString(data[p]);
