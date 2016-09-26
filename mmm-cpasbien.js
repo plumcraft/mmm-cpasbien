@@ -37,7 +37,7 @@ Module.register("mmm-cpasbien",{
             table.appendChild(this.createLabelRow());
             for(var i = 0; i < max; i++) {
                if(this.torrents[i] != "undefined") {
-               	  table.appendChild(this.createDataRow(this.torrents[i]));
+                 table.appendChild(this.createDataRow(this.torrents[i],i));
                }
             }
             wrapper.appendChild(table);
@@ -73,21 +73,24 @@ Module.register("mmm-cpasbien",{
         return labelRow;
     },
 
-    createDataRow: function (data) {
+    createDataRow: function (data,i) {
         var row = document.createElement("tr");
+        console.log("i " + i);
 
         for (var p in data) {
-            var name = document.createElement("td");
-            name.innerHTML = this.removeString(data[p]);
-            // row.style.opacity = 0,4;
-            row.appendChild(name);
+          var name = document.createElement("td");
+          name.innerHTML = this.removeString(data[p]);
+          row.style.opacity = 1.2 - (1 / this.config.topMax * i);
+          row.appendChild(name);
         }
         return row;
     },
 
     removeString: function (data) {
-        for (var i = 0; i < this.config.replace.length; i++) {
-            data = data.replace(this.config.replace[i],"");
+        if (data % 1 !== 0) {
+          for (var i = 0; i < this.config.replace.length; i++) {
+              data = data.replace(this.config.replace[i],"");
+          }
         }
         return data;
     },
