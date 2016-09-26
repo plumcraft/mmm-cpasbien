@@ -76,7 +76,7 @@ Module.register("mmm-cpasbien",{
     createDataRow: function (data,i) {
         var row = document.createElement("tr");
         
-        for (var p in data) {
+	for (var p in data) {
           var name = document.createElement("td");
           name.innerHTML = this.removeString(data[p]);
           row.style.opacity = 1.2 - (1 / this.config.topMax * i);
