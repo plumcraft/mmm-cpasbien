@@ -1,0 +1,23 @@
+{
+  "name": "mmm-cpasbien",
+  "version": "1.0.0",
+  "description": "Cpasbien scrapper module for MagicMirror2",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plumcraft/mmm-cpasbien.git"
+  },
+  "keywords": [
+    "MagicMirror",
+    "cpasbien"
+  ],
+  "author": "plumcraft",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/plumcraft/mmm-cpasbien/issues"
+  },
+  "homepage": "https://github.com/plumcraft/mmm-cpasbien#readme",
+  "dependencies": {
+    "request-promise": "latest",
+    "cheerio": "latest"
+  }
+}
