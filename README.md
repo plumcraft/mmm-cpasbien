@@ -37,4 +37,8 @@ Cpasbien website scraper Module for MagicMirror<sup>2</sup>
 | **Option** | **Default** | **Description** |
 | --- | --- | --- |
 | `fontSize` | 9 | Font size in pixels |
+| `header` | true | Boolean to display header |
 | `dimmed` | true | Boolean for discrete visibility |
+| `loadingText` | 'Loading...' | String to display loading message |
+| `topMax` | 10 | Display max results |
+| `replace` | ["DVDRIP","2016","FRENCH","DVDSCR","720p"] | Keywords removed on movies titles |
