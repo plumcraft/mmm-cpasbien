@@ -1,6 +1,7 @@
 Module.register("mmm-cpasbien",{
     defaults: {
         fontSize: 9,
+	header: true,
         dimmed: true,
         loadingText: 'Loading...',
         topMax: 10,
@@ -20,9 +21,11 @@ Module.register("mmm-cpasbien",{
 
     getDom: function() {
         var wrapper = document.createElement("div");
-        var header = document.createElement("header"); //support for config.changeColor
-        header.innerHTML =  "Top " + this.config.topMax + " torrents";
-        wrapper.appendChild(header);
+	if (this.config.header)
+          var header = document.createElement("header");
+          header.innerHTML =  "Top " + this.config.topMax + " torrents";
+          wrapper.appendChild(header);
+        }
 
         if (!this.torrents || this.torrents.length === 0) {
             var text = document.createElement("div");
