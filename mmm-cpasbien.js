@@ -21,7 +21,7 @@ Module.register("mmm-cpasbien",{
 
     getDom: function() {
         var wrapper = document.createElement("div");
-	if (this.config.header)
+	if (this.config.header) {
           var header = document.createElement("header");
           header.innerHTML =  "Top " + this.config.topMax + " torrents";
           wrapper.appendChild(header);
