@@ -5,7 +5,7 @@ Module.register("mmm-cpasbien",{
         dimmed: true,
         loadingText: 'Loading...',
         topMax: 10,
-        replace: ["DVDRIP","2016","FRENCH","DVDSCR","720p"],
+        ignoreString: ["DVDRIP","2016","FRENCH","DVDSCR","720p"],
 
     },
 
@@ -90,8 +90,8 @@ Module.register("mmm-cpasbien",{
 
     removeString: function (data) {
         if (data % 1 !== 0) {
-          for (var i = 0; i < this.config.replace.length; i++) {
-              data = data.replace(this.config.replace[i],"");
+          for (var i = 0; i < this.config.ignoreString.length; i++) {
+              data = data.replace(this.config.ignoreString[i],"");
           }
         }
         return data;
