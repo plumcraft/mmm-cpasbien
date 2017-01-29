@@ -1,1 +1,1 @@
-{ module: 'mmm-cpasbien', position: 'top_right', classes: 'plumcraft' }
+{ module: 'mmm-cpasbien', position: 'top_right', classes: 'plumcraft' },
